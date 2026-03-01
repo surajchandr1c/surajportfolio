@@ -14,7 +14,7 @@ const ibmPlexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Suraj | Fullstack Creative Portfolio",
+  title: "Suraj Portfolio",
   description:
     "Portfolio showcasing fullstack development, MARN stack, Photoshop, video editing, Canva, WordPress, and Figma.",
 };
