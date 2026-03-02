@@ -217,14 +217,14 @@ export default async function Home({
               <p className="eyebrow">Full-Stack Developer</p>
               <h1>suraj chandr1c</h1>
               <p className="hero-email">
-                <a href="mailto:sunbaby7319@gmail.com">sunbaby7319@gmail.com</a>
+                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>
               </p>
               <p className="hero-summary">
                 I build fast, scalable websites and web apps with clean design,
                 strong architecture, and content that drives business results.
               </p>
               <div className="social-icons" aria-label="Social links">
-                <a href="mailto:sunbaby7319@gmail.com" aria-label="Email Suraj">
+                <a href="mailto:surajkumar40407@gmail.com" aria-label="Email Suraj">
                   <MdEmail />
                 </a>
                 <a
