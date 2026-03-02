@@ -10,6 +10,7 @@ import {
   SiExpress,
   SiFastapi,
   SiFigma,
+  SiGithub,
   SiHtml5,
   SiInstagram,
   SiJavascript,
@@ -59,6 +60,7 @@ const skillGroups = [
       { label: "Express.js", icon: <SiExpress /> },
       { label: "Node.js", icon: <SiNodedotjs /> },
       { label: "WordPress", icon: <SiWordpress /> },
+      { label: "GitHub", icon: <SiGithub /> },
     ],
   },
   {
@@ -240,6 +242,14 @@ export default async function Home({
                   aria-label="Suraj on LinkedIn"
                 >
                   <SiLinkedin />
+                </a>
+                <a
+                  href="https://github.com/surajchandr1c"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Suraj on GitHub"
+                >
+                  <SiGithub />
                 </a>
                 <a
                   href="https://wa.me/917319742093"
