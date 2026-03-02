@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import { sendContactEmail } from "./actions";
 import { MdEmail } from "react-icons/md";
 import {
   SiAdobephotoshop,
@@ -9,7 +11,9 @@ import {
   SiFastapi,
   SiFigma,
   SiHtml5,
+  SiInstagram,
   SiJavascript,
+  SiLinkedin,
   SiMeta,
   SiMongodb,
   SiMysql,
@@ -17,208 +21,231 @@ import {
   SiNodedotjs,
   SiPostman,
   SiReact,
-  SiInstagram,
-  SiLinkedin,
   SiWhatsapp,
   SiWordpress,
 } from "react-icons/si";
 
-export default function Home() {
-  const skillGroups = [
-    {
-      title: "UI/UX & Designing",
-      items: [
-        { label: "Figma", icon: <SiFigma /> },
-        { label: "Photoshop", icon: <SiAdobephotoshop /> },
-        { label: "Canva", icon: <SiCanva /> },
-      ],
-    },
-    {
-      title: "Frontend Development",
-      items: [
-        { label: "HTML5", icon: <SiHtml5 /> },
-        { label: "CSS3", icon: <SiCss3 /> },
-        { label: "JavaScript", icon: <SiJavascript /> },
-        { label: "React.js", icon: <SiReact /> },
-        { label: "Next.js", icon: <SiNextdotjs /> },
-      ],
-    },
-    {
-      title: "Frameworks & Platforms",
-      items: [
-        { label: "React.js", icon: <SiReact /> },
-        { label: "Next.js", icon: <SiNextdotjs /> },
-        { label: "Express.js", icon: <SiExpress /> },
-        { label: "Node.js", icon: <SiNodedotjs /> },
-        { label: "WordPress", icon: <SiWordpress /> },
-      ],
-    },
-    {
-      title: "Backend Development",
-      items: [
-        { label: "Node.js", icon: <SiNodedotjs /> },
-        { label: "Express.js", icon: <SiExpress /> },
-      ],
-    },
-    {
-      title: "APIs & Integration",
-      items: [
-        { label: "REST API", icon: <SiFastapi /> },
-        { label: "API Integration", icon: <SiPostman /> },
-      ],
-    },
-    {
-      title: "Database Management",
-      items: [
-        { label: "MySQL (SQL)", icon: <SiMysql /> },
-        { label: "MongoDB", icon: <SiMongodb /> },
-      ],
-    },
-    {
-      title: "Video Editing",
-      items: [
-        {
-          label: "CapCut",
-          icon: (
-            <Image
-              src="/capcut.png"
-              alt=""
-              width={18}
-              height={18}
-              className="skill-brand-icon"
-            />
-          ),
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio.example";
+
+export const metadata: Metadata = {
+  description:
+    "Suraj is a full-stack developer and UI/UX designer creating fast, conversion-focused websites, web apps, and digital creative content.",
+};
+
+const skillGroups = [
+  {
+    title: "UI/UX Design",
+    items: [
+      { label: "Figma", icon: <SiFigma /> },
+      { label: "Photoshop", icon: <SiAdobephotoshop /> },
+      { label: "Canva", icon: <SiCanva /> },
+    ],
+  },
+  {
+    title: "Frontend Development",
+    items: [
+      { label: "HTML5", icon: <SiHtml5 /> },
+      { label: "CSS3", icon: <SiCss3 /> },
+      { label: "JavaScript", icon: <SiJavascript /> },
+      { label: "React.js", icon: <SiReact /> },
+      { label: "Next.js", icon: <SiNextdotjs /> },
+    ],
+  },
+  {
+    title: "Frameworks & Platforms",
+    items: [
+      { label: "React.js", icon: <SiReact /> },
+      { label: "Next.js", icon: <SiNextdotjs /> },
+      { label: "Express.js", icon: <SiExpress /> },
+      { label: "Node.js", icon: <SiNodedotjs /> },
+      { label: "WordPress", icon: <SiWordpress /> },
+    ],
+  },
+  {
+    title: "Backend Development",
+    items: [
+      { label: "Node.js", icon: <SiNodedotjs /> },
+      { label: "Express.js", icon: <SiExpress /> },
+    ],
+  },
+  {
+    title: "APIs & Integration",
+    items: [
+      { label: "REST API", icon: <SiFastapi /> },
+      { label: "Postman", icon: <SiPostman /> },
+    ],
+  },
+  {
+    title: "Database Management",
+    items: [
+      { label: "MySQL", icon: <SiMysql /> },
+      { label: "MongoDB", icon: <SiMongodb /> },
+    ],
+  },
+  {
+    title: "Video Editing",
+    items: [
+      {
+        label: "CapCut",
+        icon: (
+          <Image
+            src="/capcut.png"
+            alt="CapCut logo"
+            width={18}
+            height={18}
+            className="skill-brand-icon"
+          />
+        ),
+      },
+      { label: "DaVinci Resolve", icon: <SiDavinciresolve /> },
+    ],
+  },
+  {
+    title: "Digital Marketing",
+    items: [{ label: "Meta Ads", icon: <SiMeta /> }],
+  },
+];
+
+const services = [
+  "Business and portfolio websites",
+  "Modern web app development",
+  "UI/UX design in Figma",
+  "Landing pages for lead generation",
+  "Instagram reel editing",
+  "Social media content handling",
+  "Video editing for wedding and clothing brands",
+  "WordPress website setup and optimization",
+  "Legacy website redesign and updates",
+];
+
+const projects = [
+  {
+    title: "SVIET CSE Department Website",
+    details:
+      "A complete academic portal for CSE students with faculty information, notices, semester resources, syllabus access, and a TechXplore section to showcase student innovation.",
+    link: "https://svietcse.vercel.app/",
+    tools: "MERN Stack",
+  },
+  {
+    title: "DigMarkSync Website",
+    details:
+      "A digital marketing website focused on influencer campaigns and social media advertising, with clear service positioning for SEO, software, web, and creative growth solutions.",
+    link: "https://digmarksync.com/",
+    tools: "HTML, CSS, JavaScript",
+  },
+  {
+    title: "FIFO Zone Website",
+    details:
+      "A conversion-oriented business website with clear messaging, streamlined navigation, and service-first content structure to improve lead quality.",
+    link: "https://fifozone.com/",
+    tools: "WordPress",
+  },
+];
+
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ status?: string }>;
+}) {
+  const { status } = await searchParams;
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Person",
+        name: "Suraj",
+        url: siteUrl,
+        jobTitle: "Full-Stack Developer",
+        description:
+          "Full-stack developer and UI/UX designer building modern websites, web apps, and digital creative solutions.",
+        sameAs: [
+          "https://www.instagram.com/surajchandr1c/?__pwa=1#",
+          "https://www.linkedin.com/in/suraj-chandr1c-836917307",
+        ],
+      },
+      {
+        "@type": "WebSite",
+        name: "Suraj Portfolio",
+        url: siteUrl,
+        description:
+          "Portfolio website showcasing full-stack development, UI/UX design, and creative services.",
+      },
+      {
+        "@type": "Service",
+        serviceType: "Full-Stack Web Development and UI/UX Design",
+        provider: {
+          "@type": "Person",
+          name: "Suraj",
         },
-        { label: "DaVinci Resolve", icon: <SiDavinciresolve /> },
-      ],
-    },
-    {
-      title: "Digital Marketing",
-      items: [
-        { label: "Meta Ads", icon: <SiMeta /> },
-      ],
-    },
-  ];
-
-  const skills = [
-    {
-      title: "Frontend Stack",
-      details:
-        "Building responsive interfaces using HTML, CSS, JavaScript, React, and Next.js with modern component structure.",
-    },
-    {
-      title: "Backend Stack",
-      details:
-        "Developing server-side functionality with Express, NordJS, SQL, MongoDB, and REST API integration for connected web applications.",
-    },
-    {
-      title: "Photoshop",
-      details:
-        "High-impact visual editing for banners, social creatives, thumbnails, branding assets, and polished web graphics.",
-    },
-    {
-      title: "Video Editing",
-      details:
-        "Edit short and long-form videos with pacing, transitions, titles, color correction, and social-media-ready outputs.",
-    },
-    {
-      title: "Canva",
-      details:
-        "Quick design systems, marketing templates, business decks, social content, and client-facing creatives with consistent branding.",
-    },
-    {
-      title: "WordPress",
-      details:
-        "Custom WordPress setup and page building with responsive structure, plugin configuration, and SEO-friendly content layout.",
-    },
-    {
-      title: "Figma",
-      details:
-        "Wireframes to high-fidelity UI design, reusable component systems, and developer-friendly design handoff.",
-    },
-  ];
-
-  const services = [
-    "Portfolio & Business Websites",
-    "Web App Development",
-    "UI/UX Design in Figma",
-    "Content & Creative Design",
-    "Insta reel edit",
-    "Social media handling",
-    "Video edit for wedding and clothing brand",
-    "Website development",
-    "Update old website",
-  ];
-
-  const projects = [
-    {
-      title: "SVIET CSE Department Website",
-      details:
-        "An academic department portal focused on CSE students, with structured navigation for faculty, notice board, semesters, syllabus resources, and a TechXplore section that highlights student projects and technical growth.",
-      link: "https://svietcse.vercel.app/",
-      tools: "MERN Stack",
-    },
-    {
-      title: "DigMarkSync Website",
-      details:
-        "A digital marketing agency site centered on influencer marketing and social media ads, presenting service offerings like SEO, web development, software solutions, creative design, and campaign-led brand growth.",
-      link: "https://digmarksync.com/",
-      tools: "HTML, CSS, JavaScript",
-    },
-    {
-      title: "FIFO Zone Website",
-      details:
-        "A brand-focused business website presenting services and offerings with a clean structure, conversion-oriented layout, and clear call-to-action flow.",
-      link: "https://fifozone.com/",
-      tools: "WordPress",
-    },
-  ];
+        areaServed: "Worldwide",
+        url: siteUrl,
+      },
+      {
+        "@type": "ItemList",
+        itemListElement: projects.map((project, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: project.title,
+          url: project.link,
+        })),
+      },
+    ],
+  };
 
   return (
     <div className="portfolio-shell">
       <div className="background-orb orb-a" />
       <div className="background-orb orb-b" />
       <main className="portfolio-main">
-        <nav className="top-nav reveal" aria-label="Primary">
-          <a href="#about">About Me</a>
-          <a href="#skills">Skill</a>
-          <a href="#projects">Project</a>
-          <a href="#contact-form">Contact Me</a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+        />
+
+        <nav className="top-nav reveal" aria-label="Primary navigation">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#contact-form">Contact</a>
         </nav>
 
-        <section className="hero reveal">
+        <header className="hero reveal" id="home">
           <div className="hero-grid">
             <div className="hero-left">
-              <p className="eyebrow">Creative Developer</p>
-              <h1>Suraj</h1>
+              <p className="eyebrow">Full-Stack Developer</p>
+              <h1>suraj chandr1c</h1>
               <p className="hero-email">
-                <a href="mailto:suraj@example.com">suraj@example.com</a>
+                <a href="mailto:sunbaby7319@gmail.com">sunbaby7319@gmail.com</a>
+              </p>
+              <p className="hero-summary">
+                I build fast, scalable websites and web apps with clean design,
+                strong architecture, and content that drives business results.
               </p>
               <div className="social-icons" aria-label="Social links">
-                <a href="mailto:sunbaby7319@gmail.com" aria-label="Email">
+                <a href="mailto:sunbaby7319@gmail.com" aria-label="Email Suraj">
                   <MdEmail />
                 </a>
                 <a
                   href="https://www.instagram.com/surajchandr1c/?__pwa=1#"
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
+                  rel="noopener noreferrer"
+                  aria-label="Suraj on Instagram"
                 >
                   <SiInstagram />
                 </a>
                 <a
                   href="https://www.linkedin.com/in/suraj-chandr1c-836917307"
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label="LinkedIn"
+                  rel="noopener noreferrer"
+                  aria-label="Suraj on LinkedIn"
                 >
                   <SiLinkedin />
                 </a>
                 <a
                   href="https://wa.me/917319742093"
                   target="_blank"
-                  rel="noreferrer"
-                  aria-label="WhatsApp"
+                  rel="noopener noreferrer"
+                  aria-label="Message Suraj on WhatsApp"
                 >
                   <SiWhatsapp />
                 </a>
@@ -229,7 +256,7 @@ export default function Home() {
               <div className="photo-frame">
                 <Image
                   src="/surajpic.png"
-                  alt="Suraj profile"
+                  alt="Portrait of Suraj Chandr"
                   className="profile-photo"
                   width={320}
                   height={410}
@@ -240,35 +267,30 @@ export default function Home() {
 
             <div className="hero-right">
               <a className="contact-scroll-btn hero-connect-btn" href="#contact-form">
-                Connect With Me
+                Start a Project
               </a>
             </div>
           </div>
-        </section>
+        </header>
 
-        <section id="about" className="card-grid reveal delay-1">
+        <section id="about" className="card-grid reveal delay-1" aria-labelledby="about-title">
           <article className="info-card">
-            <h2>About Me</h2>
+            <h2 id="about-title">About Me</h2>
             <p>
-              I am a Computer Science student and full-stack developer focused
-              on building scalable, user-centered web applications. I
-              specialize in modern frontend and backend technologies, creating
-              responsive interfaces and secure, efficient server-side systems. I
-              enjoy transforming ideas into reliable digital products that solve
-              real problems.
+              I am a Computer Science student and full-stack developer focused on
+              building user-centered digital products. My stack includes modern
+              frontend frameworks, robust backend architecture, and efficient
+              data management to deliver reliable web applications.
             </p>
             <p>
-              Alongside seeking full-time opportunities, I also work as a
-              freelance developer, helping clients turn their concepts into
-              professional, performance-driven websites. I prioritize clean
-              code, strong architecture, and long-term maintainability. My goal
-              is to continuously grow as a developer while delivering
-              high-quality solutions that create measurable impact for
-              businesses and users alike.
+              I also work with clients as a freelance developer, turning ideas
+              into professional, performance-focused websites and web apps. I
+              prioritize clean code, maintainable structure, and measurable
+              business outcomes.
             </p>
           </article>
-          <article className="info-card">
-            <h2>What I Deliver</h2>
+          <article className="info-card" aria-labelledby="services-title">
+            <h2 id="services-title">What I Deliver</h2>
             <ul>
               {services.map((service) => (
                 <li key={service}>{service}</li>
@@ -277,10 +299,10 @@ export default function Home() {
           </article>
         </section>
 
-        <section id="skills" className="skills-box reveal delay-2">
+        <section id="skills" className="skills-box reveal delay-2" aria-labelledby="skills-title">
           <div className="section-title">
             <p>Stack</p>
-            <h2>Skills</h2>
+            <h2 id="skills-title">Technical Skills</h2>
           </div>
           <div className="skills-box-grid" aria-label="Skills grouped by type">
             {skillGroups.map((group) => (
@@ -301,10 +323,10 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projects" className="projects reveal delay-3">
+        <section id="projects" className="projects reveal delay-3" aria-labelledby="projects-title">
           <div className="section-title">
             <p>Selected Work</p>
-            <h2>Projects</h2>
+            <h2 id="projects-title">Featured Projects</h2>
           </div>
           <div className="project-grid">
             {projects.map((project) => (
@@ -314,83 +336,107 @@ export default function Home() {
                 <p className="project-tools">
                   <strong>Tools:</strong> {project.tools}
                 </p>
-                {"link" in project ? (
-                  <a href={project.link} target="_blank" rel="noreferrer">
-                    Visit Website
-                  </a>
-                ) : null}
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit ${project.title}`}
+                >
+                  View Live Project
+                </a>
               </article>
             ))}
           </div>
         </section>
 
-        <section className="timeline reveal delay-4">
+        <section className="timeline reveal delay-4" aria-labelledby="process-title">
           <div className="section-title">
             <p>How I Work</p>
-            <h2>Simple Process, Reliable Delivery</h2>
+            <h2 id="process-title">Simple Process, Reliable Delivery</h2>
           </div>
           <div className="timeline-row">
             <div>
               <span>01</span>
               <h3>Understand Goals</h3>
-              <p>Project requirement, audience, and platform are finalized.</p>
+              <p>Requirements, audience, and scope are finalized.</p>
             </div>
             <div>
               <span>02</span>
-              <h3>Create & Build</h3>
-              <p>Design and development happen in aligned iterations.</p>
+              <h3>Design and Build</h3>
+              <p>UI and development move together in iterative sprints.</p>
             </div>
             <div>
               <span>03</span>
-              <h3>Show to Client</h3>
-              <p>Share progress and make changes according to client requirements.</p>
+              <h3>Review and Improve</h3>
+              <p>Feedback is applied quickly to align with business needs.</p>
             </div>
             <div>
               <span>04</span>
-              <h3>Launch & Support</h3>
-              <p>Final delivery, optimization, and post-launch updates.</p>
+              <h3>Launch and Support</h3>
+              <p>Final deployment, optimization, and post-launch updates.</p>
             </div>
           </div>
         </section>
 
-        <section className="skills reveal delay-3">
-          <div className="section-title">
-            <p>Detailed Skills</p>
-            <h2>Tech + Design + Content</h2>
-          </div>
-          <div className="skills-grid">
-            {skills.map((skill) => (
-              <article key={skill.title} className="skill-card">
-                <h3>{skill.title}</h3>
-                <p>{skill.details}</p>
-              </article>
-            ))}
-          </div>
-        </section>
-
-        <section id="contact-form" className="contact-form reveal delay-4">
+        <section
+          id="contact-form"
+          className="contact-form reveal delay-4"
+          aria-labelledby="contact-title"
+        >
           <div className="section-title">
             <p>Get In Touch</p>
-            <h2>Connect With Me</h2>
+            <h2 id="contact-title">Connect With Me</h2>
           </div>
-          <form className="form-grid">
+          <form className="form-grid" action={sendContactEmail}>
             <label>
               Name
-              <input type="text" name="name" placeholder="Your name" />
+              <input
+                type="text"
+                name="name"
+                autoComplete="name"
+                placeholder="Your name"
+                required
+              />
+            </label>
+            <label>
+              Email
+              <input
+                type="email"
+                name="email"
+                autoComplete="email"
+                placeholder="Your email address"
+                required
+              />
             </label>
             <label>
               Phone
-              <input type="tel" name="phone" placeholder="Your phone number" />
+              <input
+                type="tel"
+                name="phone"
+                autoComplete="tel"
+                placeholder="Your phone number"
+                required
+              />
+            </label>
+            <label>
+              City
+              <input
+                type="text"
+                name="city"
+                autoComplete="address-level2"
+                placeholder="Your city"
+                required
+              />
             </label>
             <label className="full-width">
               Requirement
-              <select name="requirement" defaultValue="">
+              <select name="requirement" defaultValue="" required>
                 <option value="" disabled>
-                  What are you looking for
+                  What are you looking for?
                 </option>
-                <option value="frontend">Frontend</option>
-                <option value="website">Website</option>
-                <option value="ecommerce">Ecommerce</option>
+                <option value="frontend">Frontend Development</option>
+                <option value="website">Website Development</option>
+                <option value="ecommerce">Ecommerce Website</option>
                 <option value="video-editing">Video Editing</option>
                 <option value="social-media-handling">Social Media Handling</option>
                 <option value="meta-ads">Meta Ads</option>
@@ -402,9 +448,20 @@ export default function Home() {
                 name="message"
                 rows={5}
                 placeholder="Tell me about your project"
+                required
               />
             </label>
-            <button type="submit">Send</button>
+            <button type="submit">Send Message</button>
+            {status === "sent" ? (
+              <p className="form-status" role="status">
+                Message sent successfully. I will contact you soon.
+              </p>
+            ) : null}
+            {status === "missing" || status === "config-error" ? (
+              <p className="form-status form-status-error" role="status">
+                Unable to send message right now. Please verify all fields and try again.
+              </p>
+            ) : null}
           </form>
         </section>
       </main>

@@ -162,6 +162,13 @@ body {
   font-size: clamp(1.2rem, 2vw, 1.9rem);
 }
 
+.hero-summary {
+  margin: 0.8rem 0 0;
+  max-width: 34ch;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
 .social-icons {
   margin-top: 1rem;
   display: flex;
@@ -622,6 +629,27 @@ body {
   box-shadow: var(--ui-hover-shadow);
 }
 
+.form-status {
+  grid-column: 1 / -1;
+  margin: 0.2rem 0 0;
+  font-size: 0.86rem;
+  color: #1e6b3f;
+  font-family: var(--font-ibm-plex-mono), monospace;
+}
+
+.form-status-error {
+  color: #8e2a1d;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #1c221f;
+  outline-offset: 2px;
+}
+
 .reveal {
   animation: riseIn 0.8s ease both;
 }
@@ -713,6 +741,10 @@ body {
     font-size: 1rem;
   }
 
+  .hero-summary {
+    margin-inline: auto;
+  }
+
   .social-icons {
     margin-top: 0.6rem;
     justify-content: center;
@@ -801,5 +833,18 @@ body {
 
   .contact-scroll-btn {
     width: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
   }
 }

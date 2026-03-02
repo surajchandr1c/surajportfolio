@@ -13,10 +13,70 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio.example";
+
 export const metadata: Metadata = {
-  title: "Suraj Portfolio",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "surajchandr1c",
+    template: "%s | Suraj Portfolio",
+  },
   description:
-    "Portfolio showcasing fullstack development, MARN stack, Photoshop, video editing, Canva, WordPress, and Figma.",
+    "Portfolio of Suraj, a full-stack developer and UI/UX designer building performance-focused websites, web apps, and brand content.",
+  keywords: [
+    "Suraj",
+    "full-stack developer",
+    "web developer portfolio",
+    "UI UX designer",
+    "React developer",
+    "Next.js developer",
+    "WordPress developer",
+    "freelance web developer",
+    "video editing",
+    "digital marketing",
+  ],
+  authors: [{ name: "Suraj" }],
+  creator: "Suraj",
+  category: "technology",
+  applicationName: "Suraj Portfolio",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    url: "/",
+    title: "Suraj | Full-Stack Developer & UI/UX Designer",
+    description:
+      "Explore Suraj's portfolio featuring modern websites, web applications, design systems, and digital creative services.",
+    siteName: "Suraj Portfolio",
+    locale: "en_US",
+    images: [
+      {
+        url: "/surajpic.png",
+        width: 1200,
+        height: 1200,
+        alt: "Suraj profile photo",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Suraj | Full-Stack Developer & UI/UX Designer",
+    description:
+      "Modern, scalable web development and design services by Suraj.",
+    images: ["/surajpic.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
 export default function RootLayout({
