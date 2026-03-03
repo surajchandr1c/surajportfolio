@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { sendContactEmail } from "./actions";
 import { MdEmail } from "react-icons/md";
+
 import {
   SiAdobephotoshop,
   SiCanva,
