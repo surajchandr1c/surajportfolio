@@ -14,7 +14,7 @@ const ibmPlexMono = IBM_Plex_Mono({
   subsets: ["latin"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://portfolio.example";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://surajchandr1c.vercel.app/";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
