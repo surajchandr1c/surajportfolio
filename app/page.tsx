@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { sendContactEmail } from "./actions";
 import { MdEmail } from "react-icons/md";
 
 import {
@@ -33,8 +32,6 @@ export const metadata: Metadata = {
   description:
     "Suraj is a full-stack developer and UI/UX designer creating fast, conversion-focused websites, web apps, and digital creative content.",
 };
-
-export const runtime = "nodejs";
 
 const skillGroups = [
   {
@@ -147,12 +144,7 @@ const projects = [
   },
 ];
 
-export default async function Home({
-  searchParams,
-}: {
-  searchParams: Promise<{ status?: string }>;
-}) {
-  const { status } = await searchParams;
+export default function Home() {
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
@@ -211,7 +203,7 @@ export default async function Home({
           <a href="#about">About</a>
           <a href="#skills">Skills</a>
           <a href="#projects">Projects</a>
-          <a href="#contact-form">Contact</a>
+          <a href="mailto:surajkumar40407@gmail.com">Contact</a>
         </nav>
 
         <header className="hero reveal" id="home">
@@ -279,7 +271,12 @@ export default async function Home({
             </div>
 
             <div className="hero-right">
-              <a className="contact-scroll-btn hero-connect-btn" href="#contact-form">
+              <a
+                className="contact-scroll-btn hero-connect-btn"
+                href="https://wa.me/917319742093"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Start a Project
               </a>
             </div>
@@ -389,119 +386,6 @@ export default async function Home({
               <p>Final deployment, optimization, and post-launch updates.</p>
             </div>
           </div>
-        </section>
-
-        <section
-          id="contact-form"
-          className="contact-form reveal delay-4"
-          aria-labelledby="contact-title"
-        >
-          <div className="section-title">
-            <p>Get In Touch</p>
-            <h2 id="contact-title">Connect With Me</h2>
-          </div>
-          <form className="form-grid" action={sendContactEmail}>
-            <label>
-              Name
-              <input
-                type="text"
-                name="name"
-                autoComplete="name"
-                placeholder="Your name"
-                required
-              />
-            </label>
-            <label>
-              Email
-              <input
-                type="email"
-                name="email"
-                autoComplete="email"
-                placeholder="Your email address"
-                required
-              />
-            </label>
-            <label>
-              Phone
-              <input
-                type="tel"
-                name="phone"
-                autoComplete="tel"
-                placeholder="Your phone number"
-              />
-            </label>
-            <label>
-              City
-              <input
-                type="text"
-                name="city"
-                autoComplete="address-level2"
-                placeholder="Your city"
-              />
-            </label>
-            <label className="full-width">
-              Requirement
-              <select name="requirement" defaultValue="" required>
-                <option value="" disabled>
-                  What are you looking for?
-                </option>
-                <option value="frontend">Frontend Development</option>
-                <option value="website">Website Development</option>
-                <option value="ecommerce">Ecommerce Website</option>
-                <option value="video-editing">Video Editing</option>
-                <option value="social-media-handling">Social Media Handling</option>
-                <option value="meta-ads">Meta Ads</option>
-              </select>
-            </label>
-            <label className="full-width">
-              Message
-              <textarea
-                name="message"
-                rows={5}
-                placeholder="Tell me about your project"
-                required
-              />
-            </label>
-            <button type="submit">Send Message</button>
-            {status === "sent" ? (
-              <p className="form-status" role="status">
-                Message sent successfully. I will contact you soon.
-              </p>
-            ) : null}
-            {status === "missing" ? (
-              <p className="form-status form-status-error" role="status">
-                Please fill in the required fields and try again.
-              </p>
-            ) : null}
-            {status === "config-error" ? (
-              <p className="form-status form-status-error" role="status">
-                Unable to send via the form right now. Please email me at{" "}
-                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a> or message on{" "}
-                <a href="https://wa.me/917319742093" target="_blank" rel="noopener noreferrer">
-                  WhatsApp
-                </a>
-                .
-              </p>
-            ) : null}
-            {status === "auth-error" ? (
-              <p className="form-status form-status-error" role="status">
-                Email server authentication failed. Please try again later, or email me at{" "}
-                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>.
-              </p>
-            ) : null}
-            {status === "timeout" || status === "connection-error" || status === "tls-error" ? (
-              <p className="form-status form-status-error" role="status">
-                Email server connection issue. Please try again later, or email me at{" "}
-                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>.
-              </p>
-            ) : null}
-            {status === "error" ? (
-              <p className="form-status form-status-error" role="status">
-                Unable to send message right now. Please try again in a moment, or email me at{" "}
-                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>.
-              </p>
-            ) : null}
-          </form>
         </section>
       </main>
     </div>
