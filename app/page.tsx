@@ -475,7 +475,7 @@ export default async function Home({
             ) : null}
             {status === "config-error" ? (
               <p className="form-status form-status-error" role="status">
-                Contact form is not configured yet. Please email me at{" "}
+                Unable to send via the form right now. Please email me at{" "}
                 <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a> or message on{" "}
                 <a href="https://wa.me/917319742093" target="_blank" rel="noopener noreferrer">
                   WhatsApp
