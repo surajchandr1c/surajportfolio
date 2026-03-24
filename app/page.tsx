@@ -483,6 +483,18 @@ export default async function Home({
                 .
               </p>
             ) : null}
+            {status === "auth-error" ? (
+              <p className="form-status form-status-error" role="status">
+                Email server authentication failed. Please try again later, or email me at{" "}
+                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>.
+              </p>
+            ) : null}
+            {status === "timeout" || status === "connection-error" || status === "tls-error" ? (
+              <p className="form-status form-status-error" role="status">
+                Email server connection issue. Please try again later, or email me at{" "}
+                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>.
+              </p>
+            ) : null}
             {status === "error" ? (
               <p className="form-status form-status-error" role="status">
                 Unable to send message right now. Please try again in a moment, or email me at{" "}
