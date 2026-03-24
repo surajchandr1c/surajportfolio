@@ -34,6 +34,8 @@ export const metadata: Metadata = {
     "Suraj is a full-stack developer and UI/UX designer creating fast, conversion-focused websites, web apps, and digital creative content.",
 };
 
+export const runtime = "nodejs";
+
 const skillGroups = [
   {
     title: "UI/UX Design",
@@ -426,7 +428,6 @@ export default async function Home({
                 name="phone"
                 autoComplete="tel"
                 placeholder="Your phone number"
-                required
               />
             </label>
             <label>
@@ -436,7 +437,6 @@ export default async function Home({
                 name="city"
                 autoComplete="address-level2"
                 placeholder="Your city"
-                required
               />
             </label>
             <label className="full-width">
@@ -468,9 +468,25 @@ export default async function Home({
                 Message sent successfully. I will contact you soon.
               </p>
             ) : null}
-            {status === "missing" || status === "config-error" ? (
+            {status === "missing" ? (
               <p className="form-status form-status-error" role="status">
-                Unable to send message right now. Please verify all fields and try again.
+                Please fill in the required fields and try again.
+              </p>
+            ) : null}
+            {status === "config-error" ? (
+              <p className="form-status form-status-error" role="status">
+                Contact form is not configured yet. Please email me at{" "}
+                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a> or message on{" "}
+                <a href="https://wa.me/917319742093" target="_blank" rel="noopener noreferrer">
+                  WhatsApp
+                </a>
+                .
+              </p>
+            ) : null}
+            {status === "error" ? (
+              <p className="form-status form-status-error" role="status">
+                Unable to send message right now. Please try again in a moment, or email me at{" "}
+                <a href="mailto:surajkumar40407@gmail.com">surajkumar40407@gmail.com</a>.
               </p>
             ) : null}
           </form>
