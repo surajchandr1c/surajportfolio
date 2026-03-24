@@ -266,7 +266,7 @@ export default async function Home({
             <div className="hero-center">
               <div className="photo-frame">
                 <Image
-                  src="/surajpic.png"
+                  src="/suraj.jpeg"
                   alt="Portrait of Suraj Chandr"
                   className="profile-photo"
                   width={320}

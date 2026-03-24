@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/surajpic.png",
+        url: "/suraj.jpeg",
         width: 1200,
         height: 1200,
         alt: "Suraj profile photo",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     title: "Suraj | Full-Stack Developer & UI/UX Designer",
     description:
       "Modern, scalable web development and design services by Suraj.",
-    images: ["/surajpic.png"],
+    images: ["/suraj.jpeg"],
   },
   robots: {
     index: true,
